@@ -42,7 +42,7 @@ if [ $os == "Darwin" ]; then
 fi
 WD=$(pwd)
 mkdir plain && cd plain
-../configure $CFGOPTS --enable-gdb-stub && make -j8
+../configure $CFGOPTS --build=aarch64-unknown-linux-gnu --enable-gdb-stub && make -j8
 if [ $? -ne 0 ]; then
   echo "Error: build bochs failed"
   exit 1
@@ -51,7 +51,7 @@ echo "Bochs plain successfully built"
 make install
 cd $WD
 mkdir with-dbg && cd with-dbg 
-../configure --enable-debugger --disable-debugger-gui $CFGOPTS && make -j8
+../configure --build=aarch64-unknown-linux-gnu --enable-debugger --disable-debugger-gui $CFGOPTS && make -j8
 if [ $? -ne 0 ]; then
   echo "Error: build bochs-dbg failed"
   exit 1
